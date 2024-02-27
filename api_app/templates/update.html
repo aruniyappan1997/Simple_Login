@@ -1,0 +1,32 @@
+{% extends 'Base.html'%}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+<h3 class="text-center text-secondary p-3"><b>Welcome to KSK institue</b></h3>
+
+<!-- User Details -->
+<form method="post">
+    {% csrf_token %}
+    <div class="container col-md-4">
+        <table class="table">
+            {{ form.as_table }}
+        </table>
+        <button class="btn btn-warning col-md-12" type=submit>Update</button>
+    </div>
+    <!-- Messages  -->
+    {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+          <p class="text-danger timeout">{{message}}</p>
+      {% elif message.tags ==  'success' %}
+          <p class="text-success timeout">{{message}}</p>
+      {% else %}
+          <p>{{message}}</p>
+      {% endif %}
+    {% endfor %}
+   {% endif %}
+</form>
+{% endblock %}
